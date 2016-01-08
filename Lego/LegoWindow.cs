@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace Lego
 
         public Point TopLeft { get; set; }
         public Point BottomRight { get; set; }
+        public Size Size { get; set; }
 
         public Process Process { get; }
 
@@ -22,13 +24,15 @@ namespace Lego
             Process = process;
         }
 
-        public JObject ToJson() => new JObject() {
-            ["top"] = TopLeft.AsToken(),
-            ["bottom"] = BottomRight.AsToken(),
-            ["process"] = Process.AsToken()
-        };
+        public LegoWindow(Point top, Size size, Process process)
+        {
+            TopLeft = top;
+            Size = size;
+            Process = process;
+        }
 
-        public override string ToString() => $"{TopLeft}, {BottomRight} - {Process}";
-        
+
+
+        public override string ToString() => JsonConvert.SerializeObject(this, Formatting.Indented);        
     }
 }
