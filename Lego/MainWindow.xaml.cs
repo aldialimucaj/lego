@@ -21,17 +21,8 @@ namespace Lego
     /// </summary>
     public partial class MainWindow 
     {
-#if DEBUG
-        // binding console for debug purposes
-        [DllImport("kernel32.dll", SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool AllocConsole();
-#endif
         public MainWindow()
         {
-#if DEBUG
-            AllocConsole();
-#endif
             InitializeComponent();
         }
 
@@ -42,8 +33,10 @@ namespace Lego
             Process process = new Process();
 
             LegoWindow lw = new LegoWindow(p1, p2, process);
+            LegoConfig c = new LegoConfig();
+            c.Windows.Add(lw);
 
-            Console.WriteLine(lw);
+            Console.WriteLine(c);
         }
     }
 }
