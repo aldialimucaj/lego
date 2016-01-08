@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace Lego
 {
-    class Size
+    class LgSize
     {
         public int Width { get; set; }
         public int Height { get; set; }
 
-        public Size(int width, int height)
+        public LgSize(int width, int height)
         {
             Width = width;
             Height = height;

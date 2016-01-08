@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace Lego
 {
-    class Point
+    class LgPoint
     {
         public int X { get; set; }
         public int Y { get; set; }
 
-        public Point(int x, int y)
+        public LgPoint(int x, int y)
         {
             X = x;
             Y = y;

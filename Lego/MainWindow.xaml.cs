@@ -28,15 +28,18 @@ namespace Lego
 
         private void btnRecord_Click(object sender, RoutedEventArgs e)
         {
-            Point p1 = new Point(0, 0);
-            Point p2 = new Point(10, 10);
-            Process process = new Process();
+            LgPoint p1 = new LgPoint(10, 10);
+            LgSize s1 = new LgSize(100, 100);
+            LgProcess process = new LgProcess("Notepad",null, "notepad.exe",null);
 
-            LegoWindow lw = new LegoWindow(p1, p2, process);
-            LegoConfig c = new LegoConfig();
+            LgWindow lw = new LgWindow(p1, s1, process);
+            LgConfig c = new LgConfig();
             c.Windows.Add(lw);
 
             Console.WriteLine(c);
+
+            c.StartProcesses();
+            c.RepositionWindows();
         }
     }
 }

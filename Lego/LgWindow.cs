@@ -8,23 +8,23 @@ using System.Threading.Tasks;
 
 namespace Lego
 {
-    class LegoWindow
+    class LgWindow
     {
 
-        public Point TopLeft { get; set; }
-        public Point BottomRight { get; set; }
-        public Size Size { get; set; }
+        public LgPoint TopLeft { get; set; }
+        public LgPoint BottomRight { get; set; }
+        public LgSize Size { get; set; }
 
-        public Process Process { get; }
+        public LgProcess Process { get; }
 
-        public LegoWindow(Point top, Point bottom, Process process )
+        public LgWindow(LgPoint top, LgPoint bottom, LgProcess process )
         {
             TopLeft = top;
             BottomRight = bottom;
             Process = process;
         }
 
-        public LegoWindow(Point top, Size size, Process process)
+        public LgWindow(LgPoint top, LgSize size, LgProcess process)
         {
             TopLeft = top;
             Size = size;
