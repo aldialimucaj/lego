@@ -12,7 +12,6 @@ namespace Lego
     {
 
         public LgPoint TopLeft { get; set; }
-        public LgPoint BottomRight { get; set; }
         public LgSize Size { get; set; }
 
         public LgProcess Process { get; }
@@ -20,7 +19,6 @@ namespace Lego
         public LgWindow(LgPoint top, LgPoint bottom, LgProcess process )
         {
             TopLeft = top;
-            BottomRight = bottom;
             Process = process;
         }
 

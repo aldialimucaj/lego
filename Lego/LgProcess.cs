@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace Lego
 {
@@ -35,6 +36,12 @@ namespace Lego
         /// </summary>
         [JsonIgnore]
         public IntPtr hwnd { get; set; }
+        
+        /// <summary>
+        /// Windows process
+        /// </summary>
+        [JsonIgnore]
+        public Process WinProcess { get; internal set; }
 
         public LgProcess(string name, string path, string filename, string args)
         {

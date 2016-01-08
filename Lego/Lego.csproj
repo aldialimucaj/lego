@@ -75,7 +75,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="IOManager.cs" />
     <Compile Include="LgConfig.cs" />
+    <Compile Include="LgRectangle.cs" />
     <Compile Include="LgWindow.cs" />
     <Compile Include="LgProcessManager.cs" />
     <Compile Include="LgSize.cs" />

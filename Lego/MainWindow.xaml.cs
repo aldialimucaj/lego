@@ -21,25 +21,35 @@ namespace Lego
     /// </summary>
     public partial class MainWindow 
     {
+        LgConfig c = null;
+        IOManager io = null;
+
         public MainWindow()
         {
             InitializeComponent();
+            c = new LgConfig();
+            io = new IOManager(null);
         }
 
         private void btnRecord_Click(object sender, RoutedEventArgs e)
         {
-            LgPoint p1 = new LgPoint(10, 10);
-            LgSize s1 = new LgSize(100, 100);
-            LgProcess process = new LgProcess("Notepad",null, "notepad.exe",null);
+            //LgPoint p1 = new LgPoint(10, 10);
+            //LgSize s1 = new LgSize(100, 100);
+            //LgProcess process = new LgProcess("Notepad",null, "notepad.exe",null);
 
-            LgWindow lw = new LgWindow(p1, s1, process);
-            LgConfig c = new LgConfig();
-            c.Windows.Add(lw);
+            //LgWindow lw = new LgWindow(p1, s1, process);
+            //c.Windows.Add(lw);
 
-            Console.WriteLine(c);
+            //Console.WriteLine(c);
 
-            c.StartProcesses();
-            c.RepositionWindows();
+            //c.StartProcesses();
+            //c.RepositionWindows();
+            io.Start();
+        }
+
+        private void btnDone_Click(object sender, RoutedEventArgs e)
+        {
+            io.Stop();
         }
     }
 }
