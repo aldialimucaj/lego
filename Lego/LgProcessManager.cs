@@ -112,6 +112,16 @@ namespace Lego
             return new LgRectangle(lpRect.Left, lpRect.Top, lpRect.Right, lpRect.Bottom);
         }
 
+        /// <summary>
+        /// Check if passed param matches the current process.
+        /// </summary>
+        /// <param name="process"></param>
+        /// <returns></returns>
+        public static Boolean IsCurrentProcess(Process process)
+        {
+            return Process.GetCurrentProcess().Id.Equals(process.Id);
+        }
+
 
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall, ExactSpelling = true, SetLastError = true)]
