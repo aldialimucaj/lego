@@ -21,14 +21,13 @@ namespace Lego
     /// </summary>
     public partial class MainWindow 
     {
-        LgConfig c = null;
+        LgConfig c = new LgConfig();
         IOManager io = null;
 
         public MainWindow()
         {
+            io = new IOManager(c);
             InitializeComponent();
-            c = new LgConfig();
-            io = new IOManager(null);
         }
 
         private void btnRecord_Click(object sender, RoutedEventArgs e)
@@ -51,5 +50,6 @@ namespace Lego
         {
             io.Stop();
         }
+
     }
 }

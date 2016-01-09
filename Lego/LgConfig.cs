@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace Lego
         internal Boolean StartProcesses()
         {
             Boolean allOk = true;
-            foreach(LgWindow m in Windows)
+            foreach (LgWindow m in Windows)
             {
                 allOk &= LgProcessManager.Start(m.Process);
             }
@@ -46,13 +47,24 @@ namespace Lego
         internal Boolean AddWindow(LgPoint point)
         {
             Process p = LgProcessManager.GetProcessAtCoordiante(point);
-            LgProcess process = new LgProcess(p.ProcessName, null, p.ProcessName, null);
-            LgRectangle rec = LgProcessManager.GetWindowRectange(process); 
-            
-            LgWindow window = new LgWindow(rec.GetTopLeft(), rec.GetTopLeft(), process);
+            LgProcess process = LgProcess.FromProcess(p);
+            LgRectangle rec = LgProcessManager.GetWindowRectange(process);
+
+            LgWindow window = new LgWindow(rec.GetTopLeft(), rec.GetSize(), process);
 
             Console.WriteLine(window);
             return true; // differ between use cases
+        }
+
+        internal Boolean WriteToFile()
+        {
+            // serialize JSON directly to a file
+            using (StreamWriter file = File.CreateText(@"e:\temp\config.json"))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                serializer.Serialize(file, this);
+            }
+            return true;
         }
 
         public override string ToString() => JsonConvert.SerializeObject(this, Formatting.Indented);

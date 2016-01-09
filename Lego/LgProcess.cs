@@ -50,6 +50,14 @@ namespace Lego
             Filename = filename;
             Arguments = args;
         }
+
+        public static LgProcess FromProcess(Process process)
+        {
+            LgProcess p = new LgProcess(process.ProcessName, null, process.ProcessName, null);
+            p.hwnd = process.MainWindowHandle;
+            p.WinProcess = process;
+            return p;
+        }
         
         public override string ToString() => JsonConvert.SerializeObject(this, Formatting.Indented);
     }
