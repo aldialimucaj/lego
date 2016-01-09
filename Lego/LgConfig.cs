@@ -54,6 +54,9 @@ namespace Lego
                 LgProcess process = LgProcess.FromProcess(p);
                 LgRectangle rec = LgProcessManager.GetWindowRectange(process);
                 LgWindow window = new LgWindow(rec.GetTopLeft(), rec.GetSize(), process);
+                // add to list
+                Windows.Add(window);
+                Console.WriteLine(window);
             }else
             {
                 result = false;

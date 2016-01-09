@@ -51,5 +51,10 @@ namespace Lego
             io.Stop();
         }
 
+        private void btnOpen_Click(object sender, RoutedEventArgs e)
+        {
+            c.StartProcesses();
+            c.RepositionWindows();
+        }
     }
 }
