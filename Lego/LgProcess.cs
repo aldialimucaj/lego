@@ -19,7 +19,7 @@ namespace Lego
         /// <summary>
         /// Path where to find the process
         /// </summary>
-        public string Path { get; set; }
+        public string FullPath { get; set; }
 
         /// <summary>
         /// Filename to be executed
@@ -46,14 +46,14 @@ namespace Lego
         public LgProcess(string name, string path, string filename, string args)
         {
             Name = name;
-            Path = path;
+            FullPath = path;
             Filename = filename;
             Arguments = args;
         }
 
         public static LgProcess FromProcess(Process process)
         {
-            LgProcess p = new LgProcess(process.ProcessName, null, process.ProcessName, null);
+            LgProcess p = new LgProcess(process.ProcessName, process.MainModule.FileName, process.ProcessName, process.StartInfo.Arguments);
             p.hwnd = process.MainWindowHandle;
             p.WinProcess = process;
             return p;

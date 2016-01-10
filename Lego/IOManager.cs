@@ -13,7 +13,7 @@ namespace Lego
         private  LowLevelMouseProc _proc = null;
         private static IntPtr _hookID = IntPtr.Zero;
 
-        private LgConfig Config { get; set; }
+        internal LgConfig Config { get; set; }
 
         public IOManager(LgConfig config)
         {

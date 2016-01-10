@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -21,40 +22,41 @@ namespace Lego
     /// </summary>
     public partial class MainWindow 
     {
-        LgConfig c = new LgConfig();
+        ObservableCollection<LgConfig> configs = new ObservableCollection<LgConfig>();
         IOManager io = null;
 
         public MainWindow()
         {
-            io = new IOManager(c);
             InitializeComponent();
+            LgPersistor.Init();
+            LgPersistor.GetAllConfigs().ForEach((c) => configs.Add(c));
+            listBox.ItemsSource = configs;
         }
 
         private void btnRecord_Click(object sender, RoutedEventArgs e)
         {
-            //LgPoint p1 = new LgPoint(10, 10);
-            //LgSize s1 = new LgSize(100, 100);
-            //LgProcess process = new LgProcess("Notepad",null, "notepad.exe",null);
-
-            //LgWindow lw = new LgWindow(p1, s1, process);
-            //c.Windows.Add(lw);
-
-            //Console.WriteLine(c);
-
-            //c.StartProcesses();
-            //c.RepositionWindows();
+            LgConfig c = new LgConfig();
+            io = new IOManager(c);
             io.Start();
         }
 
         private void btnDone_Click(object sender, RoutedEventArgs e)
         {
             io.Stop();
+            configs.Add(io.Config);
+            io.Config.WriteToFile(LgPersistor.GetLegoPath());
         }
 
         private void btnOpen_Click(object sender, RoutedEventArgs e)
         {
+            LgConfig c =  configs.ElementAt<LgConfig>(listBox.SelectedIndex);
             c.StartProcesses();
             c.RepositionWindows();
+        }
+
+        private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

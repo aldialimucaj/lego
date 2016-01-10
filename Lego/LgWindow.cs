@@ -14,7 +14,12 @@ namespace Lego
         public LgPoint TopLeft { get; set; }
         public LgSize Size { get; set; }
 
-        public LgProcess Process { get; }
+        public LgProcess Process { get; set; }
+
+        public LgWindow()
+        {
+
+        }
 
         public LgWindow(LgPoint top, LgPoint bottom, LgProcess process )
         {

@@ -11,6 +11,7 @@ namespace Lego
 {
     class LgConfig
     {
+        public string Title { get; set; }
         public List<LgWindow> Windows { get; set; }
         public String Shortcut { get; set; }
         public Boolean Stick { get; set; }
@@ -65,12 +66,13 @@ namespace Lego
             return result; 
         }
 
-        internal Boolean WriteToFile()
+        internal Boolean WriteToFile(string path)
         {
             // serialize JSON directly to a file
-            using (StreamWriter file = File.CreateText(@"e:\temp\lego\config.json"))
+            using (StreamWriter file = File.CreateText(Path.Combine(path, GenerateCoupon(10) + ".json")))
             {
                 JsonSerializer serializer = new JsonSerializer();
+                serializer.Formatting = Formatting.Indented;
                 serializer.Serialize(file, this);
             }
             return true;
@@ -83,8 +85,19 @@ namespace Lego
             return newConfig;
         }
 
-        public override string ToString() => JsonConvert.SerializeObject(this, Formatting.Indented);
+        public static string GenerateCoupon(int length)
+        {
+            Random random = new Random();
+            string characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+            StringBuilder result = new StringBuilder(length);
+            for (int i = 0; i < length; i++)
+            {
+                result.Append(characters[random.Next(characters.Length)]);
+            }
+            return result.ToString();
+        }
 
-
+        //public override string ToString() => JsonConvert.SerializeObject(this, Formatting.Indented);
+        public override string ToString() => $"{Title} > {String.Join(",", Windows.Select( (w) => w.Process?.Name))}";
     }
 }

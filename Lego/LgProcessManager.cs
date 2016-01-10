@@ -32,7 +32,7 @@ namespace Lego
         {
             try
             {
-                Process p = Process.Start(process.Filename, process.Arguments);
+                Process p = Process.Start(process.FullPath, process.Arguments);
                 
                 // wait a little in order for the handler to be assigned
                 p.WaitForInputIdle();
