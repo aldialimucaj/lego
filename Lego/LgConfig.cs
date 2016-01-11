@@ -12,6 +12,7 @@ namespace Lego
     class LgConfig
     {
         public string Title { get; set; }
+        public string Filepath { get; set; }
         public List<LgWindow> Windows { get; set; }
         public String Shortcut { get; set; }
         public Boolean Stick { get; set; }
@@ -68,8 +69,11 @@ namespace Lego
 
         internal Boolean WriteToFile(string path)
         {
+            if (Filepath == null) {
+                 Filepath = Path.Combine(path, GenerateString(10) + ".json");
+            }
             // serialize JSON directly to a file
-            using (StreamWriter file = File.CreateText(Path.Combine(path, GenerateCoupon(10) + ".json")))
+            using (StreamWriter file = File.CreateText(Filepath))
             {
                 JsonSerializer serializer = new JsonSerializer();
                 serializer.Formatting = Formatting.Indented;
@@ -81,11 +85,21 @@ namespace Lego
         public static LgConfig FromFile(string filepath)
         {
             LgConfig newConfig = JsonConvert.DeserializeObject<LgConfig>(File.ReadAllText(filepath));
+            newConfig.Filepath = filepath;
 
             return newConfig;
         }
 
-        public static string GenerateCoupon(int length)
+        public Boolean DeleteFile()
+        {
+            if (File.Exists(Filepath)) {
+                File.Delete(Filepath);
+                return true;
+            }
+            return false;
+        }
+
+        public static string GenerateString(int length = 10)
         {
             Random random = new Random();
             string characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
