@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -9,6 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -22,12 +24,28 @@ namespace Lego
     /// </summary>
     public partial class MainWindow 
     {
+        private NotifyIcon TrayIcon;
+
         ObservableCollection<LgConfig> configs = new ObservableCollection<LgConfig>();
         IOManager io = null;
 
         public MainWindow()
         {
             InitializeComponent();
+            InitLogic();
+            InitTray();
+        }
+
+        private void InitTray()
+        {
+            TrayIcon = new NotifyIcon();
+            TrayIcon.Visible = true;
+            TrayIcon.Icon = SystemIcons.Asterisk;
+            TrayIcon.DoubleClick += new System.EventHandler(this.trayTrayIcon_DoubleClick);
+        }
+
+        private void InitLogic()
+        {
             LgPersistor.Init();
             LgPersistor.GetAllConfigs().ForEach((c) => configs.Add(c));
             listBox.ItemsSource = configs;
@@ -57,6 +75,21 @@ namespace Lego
         private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void trayTrayIcon_DoubleClick(object Sender, EventArgs e)
+        {
+            this.Show();
+            this.WindowState = WindowState.Normal;
+        }
+
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+            this.Hide();
+
+            e.Cancel = true;
         }
     }
 }
