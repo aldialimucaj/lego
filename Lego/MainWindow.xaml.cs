@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FMUtils.KeyboardHook;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
@@ -25,6 +26,7 @@ namespace Lego
     public partial class MainWindow 
     {
         private NotifyIcon TrayIcon;
+        private Hook KeyboardHook = null;
 
         ObservableCollection<LgConfig> configs = new ObservableCollection<LgConfig>();
         IOManager io = null;
@@ -49,6 +51,17 @@ namespace Lego
             LgPersistor.Init();
             LgPersistor.GetAllConfigs().ForEach((c) => configs.Add(c));
             listBox.ItemsSource = configs;
+
+            KeyboardHook = new Hook("Global Action Hook");
+            KeyboardHook.KeyUpEvent = ShortCutHandler;
+        }
+
+        private void ShortCutHandler(KeyboardHookEventArgs e)
+        {
+            if (e.Key == Keys.F1 && e.isAltPressed)
+            {
+                trayTrayIcon_DoubleClick(null, null);
+            }
         }
 
         private void btnRecord_Click(object sender, RoutedEventArgs e)

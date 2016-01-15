@@ -8,10 +8,17 @@ using System.Threading.Tasks;
 
 namespace Lego
 {
+    /// <summary>
+    /// Manages mouse clicks
+    /// 
+    /// Courtesy of Stephen Toub
+    /// http://blogs.msdn.com/b/toub/archive/2006/05/03/589423.aspx
+    /// </summary>
     class IOManager
     {
-        private  LowLevelMouseProc _proc = null;
+        private LowLevelMouseProc _proc = null;
         private static IntPtr _hookID = IntPtr.Zero;
+        private delegate IntPtr LowLevelMouseProc(int nCode, IntPtr wParam, IntPtr lParam);
 
         internal LgConfig Config { get; set; }
 
@@ -41,10 +48,8 @@ namespace Lego
             }
         }
 
-        private delegate IntPtr LowLevelMouseProc(int nCode, IntPtr wParam, IntPtr lParam);
 
-        private IntPtr HookCallback(
-            int nCode, IntPtr wParam, IntPtr lParam)
+        private IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
         {
             if (nCode >= 0 &&
                 MouseMessages.WM_LBUTTONDOWN == (MouseMessages)wParam)
