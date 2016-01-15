@@ -107,7 +107,7 @@ namespace Lego
         public static LgRectangle GetWindowRectange(LgProcess process)
         {
             RECT lpRect = default(RECT);
-            GetWindowRect(new HandleRef(process, process.hwnd), out lpRect);
+            GetWindowRect(new HandleRef(process, process.WinProcess.MainWindowHandle), out lpRect);
 
             return new LgRectangle(lpRect.Left, lpRect.Top, lpRect.Right, lpRect.Bottom);
         }

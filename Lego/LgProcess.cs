@@ -51,6 +51,13 @@ namespace Lego
             Arguments = args;
         }
 
+
+
+        /// <summary>
+        /// Create LgProcess form a windows process
+        /// </summary>
+        /// <param name="process"></param>
+        /// <returns></returns>
         public static LgProcess FromProcess(Process process)
         {
             LgProcess p = new LgProcess(process.ProcessName, process.MainModule.FileName, process.ProcessName, process.StartInfo.Arguments);

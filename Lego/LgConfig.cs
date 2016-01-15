@@ -99,6 +99,19 @@ namespace Lego
             return false;
         }
 
+
+        /// <summary>
+        /// Updates the changes that the windows positions made
+        /// </summary>
+        internal void UpdateAndSaveChanges()
+        {
+            // update each window
+            Windows.ForEach((m) => m.UpdatePosition());
+            
+            // save to disk
+            WriteToFile(Filepath);
+        }
+
         public static string GenerateString(int length = 10)
         {
             Random random = new Random();
@@ -110,7 +123,6 @@ namespace Lego
             }
             return result.ToString();
         }
-
         //public override string ToString() => JsonConvert.SerializeObject(this, Formatting.Indented);
         public override string ToString() => $"{Title} > {String.Join(",", Windows.Select( (w) => w.Process?.Name))}";
     }

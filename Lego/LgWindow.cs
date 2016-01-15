@@ -21,7 +21,7 @@ namespace Lego
 
         }
 
-        public LgWindow(LgPoint top, LgPoint bottom, LgProcess process )
+        public LgWindow(LgPoint top, LgPoint bottom, LgProcess process)
         {
             TopLeft = top;
             Process = process;
@@ -34,8 +34,14 @@ namespace Lego
             Process = process;
         }
 
+        internal void UpdatePosition()
+        {
+            LgRectangle rec = LgProcessManager.GetWindowRectange(Process);
+            TopLeft.X = rec.X1;
+            TopLeft.Y = rec.Y1;
+            Size = rec.GetSize();
+        }
 
-
-        public override string ToString() => JsonConvert.SerializeObject(this, Formatting.Indented);        
+        public override string ToString() => JsonConvert.SerializeObject(this, Formatting.Indented);
     }
 }

@@ -80,6 +80,8 @@ namespace Lego
 
         private void btnOpen_Click(object sender, RoutedEventArgs e)
         {
+            if (listBox.SelectedIndex < 0) return;
+
             LgConfig c =  configs.ElementAt<LgConfig>(listBox.SelectedIndex);
             c.StartProcesses();
             c.RepositionWindows();
@@ -103,6 +105,12 @@ namespace Lego
             this.Hide();
 
             e.Cancel = true;
+        }
+
+        private void btnSaveChanges_Click(object sender, RoutedEventArgs e)
+        {
+            LgConfig c = configs.ElementAt<LgConfig>(listBox.SelectedIndex);
+            c.UpdateAndSaveChanges();
         }
     }
 }

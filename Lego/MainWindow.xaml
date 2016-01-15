@@ -11,6 +11,7 @@
         <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="299" Margin="158,0,0,0" VerticalAlignment="Top" Width="349" SelectionChanged="listBox_SelectionChanged"/>
         <Button x:Name="btnDone" Content="Done" HorizontalAlignment="Left" Margin="41,88,0,0" VerticalAlignment="Top" Width="82" Click="btnDone_Click" Height="31"/>
         <Button x:Name="btnOpen" Content="Open" HorizontalAlignment="Left" Margin="41,142,0,0" VerticalAlignment="Top" Width="82" Height="29" Click="btnOpen_Click"/>
+        <Button x:Name="btnSaveChanges" Content="Save" HorizontalAlignment="Left" Margin="41,192,0,0" VerticalAlignment="Top" Width="82" Height="30" Click="btnSaveChanges_Click"/>
 
     </Grid>
 </Window>
