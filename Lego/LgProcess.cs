@@ -32,12 +32,6 @@ namespace Lego
         public string Arguments { get; set; }
 
         /// <summary>
-        /// Handle to the process. It is set after execution or during configuration.
-        /// </summary>
-        [JsonIgnore]
-        public IntPtr hwnd { get; set; }
-        
-        /// <summary>
         /// Windows process
         /// </summary>
         [JsonIgnore]
@@ -61,7 +55,6 @@ namespace Lego
         public static LgProcess FromProcess(Process process)
         {
             LgProcess p = new LgProcess(process.ProcessName, process.MainModule.FileName, process.ProcessName, process.StartInfo.Arguments);
-            p.hwnd = process.MainWindowHandle;
             p.WinProcess = process;
             return p;
         }

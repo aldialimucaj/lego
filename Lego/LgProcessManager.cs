@@ -18,7 +18,7 @@ namespace Lego
         /// <param name="window"></param>
         public static Boolean Reposition(LgWindow window)
         {
-            IntPtr hande = window.Process.hwnd;
+            IntPtr hande = window.Process.WinProcess.MainWindowHandle;
             if (hande == IntPtr.Zero) return false;
             return MoveWindow(hande, window.TopLeft.X, window.TopLeft.Y, window.Size.Width, window.Size.Height, true);
         }
@@ -36,7 +36,6 @@ namespace Lego
                 
                 // wait a little in order for the handler to be assigned
                 p.WaitForInputIdle();
-                process.hwnd = p.MainWindowHandle;
                 process.WinProcess = p;
             }
             catch (Exception e)
@@ -44,7 +43,7 @@ namespace Lego
                 MessageBox.Show(e.Message);
             }
 
-            return process.hwnd != null;
+            return process.WinProcess != null && process.WinProcess.Responding;
         }
 
         /// <summary>
