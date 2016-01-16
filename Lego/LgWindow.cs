@@ -34,6 +34,11 @@ namespace Lego
             Process = process;
         }
 
+        /// <summary>
+        /// Update coordiantes of this windows.
+        /// 
+        /// When the window is moved and the changes need to be saved then this function updates the changes.
+        /// </summary>
         internal void UpdatePosition()
         {
             LgRectangle rec = LgProcessManager.GetWindowRectange(Process);
@@ -42,11 +47,17 @@ namespace Lego
             Size = rec.GetSize();
         }
 
+        /// <summary>
+        /// Show window if minimized.
+        /// </summary>
         internal void Show()
         {
             LgProcessManager.ShowWindow(Process);
         }
 
+        /// <summary>
+        /// Minimize window
+        /// </summary>
         internal void Minimize()
         {
             LgProcessManager.MinimizeWindow(Process);

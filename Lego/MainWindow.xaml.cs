@@ -44,6 +44,22 @@ namespace Lego
             TrayIcon.Visible = true;
             TrayIcon.Icon = SystemIcons.Asterisk;
             TrayIcon.DoubleClick += new System.EventHandler(this.trayTrayIcon_DoubleClick);
+
+            var ContextMenu = new ContextMenuStrip();
+            var CloseMenuItem = new ToolStripMenuItem();
+            ContextMenu.SuspendLayout();
+
+            ContextMenu.Items.Add(CloseMenuItem);
+
+            CloseMenuItem.Name = "ContextMenu";
+            CloseMenuItem.Text = "Exit";
+            CloseMenuItem.Click += new EventHandler((e, b) => {
+                this.Close();
+                Environment.Exit(0);
+            });
+
+            ContextMenu.ResumeLayout(false);
+            TrayIcon.ContextMenuStrip = ContextMenu;
         }
 
         private void InitLogic()

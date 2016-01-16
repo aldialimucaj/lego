@@ -45,8 +45,6 @@ namespace Lego
             Arguments = args;
         }
 
-
-
         /// <summary>
         /// Create LgProcess form a windows process
         /// </summary>
