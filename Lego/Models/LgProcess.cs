@@ -1,15 +1,10 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Diagnostics;
+using System.ComponentModel;
 
 namespace Lego.Models
 {
-    public class LgProcess
+    public class LgProcess : INotifyPropertyChanged
     {
         /// <summary>
         /// Description of the process
@@ -56,7 +51,14 @@ namespace Lego.Models
             p.WinProcess = process;
             return p;
         }
-        
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         public override string ToString() => JsonConvert.SerializeObject(this, Formatting.Indented);
     }
 }

@@ -83,16 +83,16 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="IOManager.cs" />
-    <Compile Include="LegoViewModel.cs" />
+    <Compile Include="ViewModels\LegoViewModel.cs" />
     <Compile Include="LegoWindow.xaml.cs">
       <DependentUpon>LegoWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LgConfig.cs" />
+    <Compile Include="Models\LgConfig.cs" />
     <Compile Include="LgPersistor.cs" />
-    <Compile Include="LgRectangle.cs" />
-    <Compile Include="LgWindow.cs" />
+    <Compile Include="Models\LgRectangle.cs" />
+    <Compile Include="Models\LgWindow.cs" />
     <Compile Include="LgProcessManager.cs" />
-    <Compile Include="LgSize.cs" />
+    <Compile Include="Models\LgSize.cs" />
     <Page Include="LegoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -111,8 +111,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LgPoint.cs" />
-    <Compile Include="LgProcess.cs" />
+    <Compile Include="Models\LgPoint.cs" />
+    <Compile Include="Models\LgProcess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -146,6 +146,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

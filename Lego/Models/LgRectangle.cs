@@ -1,6 +1,8 @@
-﻿namespace Lego.Models
+﻿using System.ComponentModel;
+
+namespace Lego.Models
 {
-    public class LgRectangle
+    public class LgRectangle : INotifyPropertyChanged
     {
         public int X1 { get; set; }
         public int Y1 { get; set; }
@@ -23,6 +25,13 @@
         public LgSize GetSize()
         {
             return new LgSize((X2 - X1) + 1, (Y2- Y1) + 1); 
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

@@ -5,8 +5,6 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lego.Models
 {
@@ -18,12 +16,12 @@ namespace Lego.Models
         public String Shortcut { get; set; }
         public Boolean Stick { get; set; }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public LgConfig()
         {
             Windows = new List<LgWindow>();
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         /// Start the processes in this configuration
@@ -157,6 +155,10 @@ namespace Lego.Models
             SaveToDirectory(Filepath);
         }
 
+        public void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         //public override string ToString() => JsonConvert.SerializeObject(this, Formatting.Indented);
         public override string ToString() => $"{Title} > {String.Join(",", Windows.Select( (w) => w.Process?.Name))}";
