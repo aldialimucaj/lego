@@ -91,7 +91,7 @@ namespace Lego
         {
             io.Stop();
             configs.Add(io.Config);
-            io.Config.WriteToFile(LgPersistor.GetLegoPath());
+            io.Config.SaveToDirectory(LgPersistor.GetLegoConfigsPath());
         }
 
         private void btnOpen_Click(object sender, RoutedEventArgs e)

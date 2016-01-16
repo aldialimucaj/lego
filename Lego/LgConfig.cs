@@ -96,13 +96,14 @@ namespace Lego
 
         /// <summary>
         /// Save config to file.
+        /// Filename is a random string.
         /// </summary>
-        /// <param name="path"></param>
+        /// <param name="directoryPath"></param>
         /// <returns></returns>
-        internal Boolean WriteToFile(string path)
+        internal Boolean SaveToDirectory(string directoryPath)
         {
             if (Filepath == null) {
-                 Filepath = Path.Combine(path, GenerateString(10) + ".json");
+                 Filepath = Path.Combine(directoryPath, LgPersistor.GenerateString(10) + ".json");
             }
             // serialize JSON directly to a file
             using (StreamWriter file = File.CreateText(Filepath))
@@ -150,24 +151,7 @@ namespace Lego
             Windows.ForEach((m) => m.UpdatePosition());
             
             // save to disk
-            WriteToFile(Filepath);
-        }
-
-        /// <summary>
-        /// Generate a random string.
-        /// </summary>
-        /// <param name="length"></param>
-        /// <returns></returns>
-        public static string GenerateString(int length = 10)
-        {
-            Random random = new Random();
-            string characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-            StringBuilder result = new StringBuilder(length);
-            for (int i = 0; i < length; i++)
-            {
-                result.Append(characters[random.Next(characters.Length)]);
-            }
-            return result.ToString();
+            SaveToDirectory(Filepath);
         }
 
 
