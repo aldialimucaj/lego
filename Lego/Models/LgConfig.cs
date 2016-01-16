@@ -1,15 +1,16 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lego
+namespace Lego.Models
 {
-    class LgConfig
+    public class LgConfig : INotifyPropertyChanged
     {
         public string Title { get; set; }
         public string Filepath { get; set; }
@@ -21,6 +22,8 @@ namespace Lego
         {
             Windows = new List<LgWindow>();
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         /// Start the processes in this configuration

@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lego
+namespace Lego.Models
 {
-    class LgSize
+    public class LgSize
     {
         public int Width { get; set; }
         public int Height { get; set; }

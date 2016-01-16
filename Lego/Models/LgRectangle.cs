@@ -1,6 +1,6 @@
-﻿namespace Lego
+﻿namespace Lego.Models
 {
-    internal class LgRectangle
+    public class LgRectangle
     {
         public int X1 { get; set; }
         public int Y1 { get; set; }

@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 
-namespace Lego
+namespace Lego.Models
 {
-    class LgProcess
+    public class LgProcess
     {
         /// <summary>
         /// Description of the process

@@ -1,8 +1,9 @@
 ﻿<Application x:Class="Lego.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Lego"
-             StartupUri="MainWindow.xaml">
+             xmlns:l="clr-namespace:Lego"
+             xmlns:vm="clr-namespace:Lego.ViewModels"
+             StartupUri="LegoWindow.xaml">
     <Application.Resources>
          
     </Application.Resources>

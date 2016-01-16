@@ -83,12 +83,20 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="IOManager.cs" />
+    <Compile Include="LegoViewModel.cs" />
+    <Compile Include="LegoWindow.xaml.cs">
+      <DependentUpon>LegoWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LgConfig.cs" />
     <Compile Include="LgPersistor.cs" />
     <Compile Include="LgRectangle.cs" />
     <Compile Include="LgWindow.cs" />
     <Compile Include="LgProcessManager.cs" />
     <Compile Include="LgSize.cs" />
+    <Page Include="LegoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lego
+namespace Lego.Models
 {
-    class LgPoint
+    public class LgPoint
     {
         public int X { get; set; }
         public int Y { get; set; }
