@@ -7,11 +7,13 @@
         mc:Ignorable="d"
         Title="Lego" Height="350" Width="525" ResizeMode="NoResize" Closing="Window_Closing">
     <Grid Margin="0,0,0,-1" HorizontalAlignment="Left" Width="517" Height="310" VerticalAlignment="Bottom">
-        <Button x:Name="btnRecord" Content="Record" HorizontalAlignment="Left" Height="28" Margin="41,30,0,0" VerticalAlignment="Top" Width="82" Click="btnRecord_Click"/>
+        <Button x:Name="btnRecord" Content="Record" HorizontalAlignment="Left" Height="28" Margin="10,30,0,0" VerticalAlignment="Top" Width="55" Click="btnRecord_Click"/>
         <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="299" Margin="158,0,0,0" VerticalAlignment="Top" Width="349" SelectionChanged="listBox_SelectionChanged"/>
-        <Button x:Name="btnDone" Content="Done" HorizontalAlignment="Left" Margin="41,88,0,0" VerticalAlignment="Top" Width="82" Click="btnDone_Click" Height="31"/>
-        <Button x:Name="btnOpen" Content="Open" HorizontalAlignment="Left" Margin="41,142,0,0" VerticalAlignment="Top" Width="82" Height="29" Click="btnOpen_Click"/>
-        <Button x:Name="btnSaveChanges" Content="Save" HorizontalAlignment="Left" Margin="41,192,0,0" VerticalAlignment="Top" Width="82" Height="30" Click="btnSaveChanges_Click"/>
+        <Button x:Name="btnDone" Content="Done" HorizontalAlignment="Left" Margin="91,30,0,0" VerticalAlignment="Top" Width="62" Click="btnDone_Click" Height="28"/>
+        <Button x:Name="btnOpen" Content="Open" HorizontalAlignment="Left" Margin="10,92,0,0" VerticalAlignment="Top" Width="55" Height="29" Click="btnOpen_Click"/>
+        <Button x:Name="btnSaveChanges" Content="Save" HorizontalAlignment="Left" Margin="91,91,0,0" VerticalAlignment="Top" Width="62" Height="30" Click="btnSaveChanges_Click"/>
+        <Button x:Name="btnShow" Content="Show" HorizontalAlignment="Left" Margin="10,156,0,0" VerticalAlignment="Top" Width="55" Click="btnShow_Click"/>
+        <Button x:Name="btnMinimize" Content="Minimize" HorizontalAlignment="Left" Margin="91,156,0,0" VerticalAlignment="Top" Width="62" Height="20" Click="btnMinimize_Click"/>
 
     </Grid>
 </Window>

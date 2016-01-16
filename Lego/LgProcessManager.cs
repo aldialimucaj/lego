@@ -112,6 +112,24 @@ namespace Lego
         }
 
         /// <summary>
+        /// Show window
+        /// </summary>
+        /// <param name="process"></param>
+        public static void ShowWindow(LgProcess process)
+        {
+            ShowWindowAsync(process.WinProcess.MainWindowHandle, 1);
+        }
+
+        /// <summary>
+        /// Minimize window
+        /// </summary>
+        /// <param name="process"></param>
+        public static void MinimizeWindow(LgProcess process)
+        {
+            ShowWindowAsync(process.WinProcess.MainWindowHandle, 6);
+        }
+
+        /// <summary>
         /// Check if passed param matches the current process.
         /// </summary>
         /// <param name="process"></param>
@@ -137,6 +155,9 @@ namespace Lego
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall, ExactSpelling = true, SetLastError = true)]
         internal static extern bool GetWindowRect(HandleRef hWnd, out RECT lpRect);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall, ExactSpelling = true, SetLastError = true)]
+        internal static extern bool ShowWindowAsync(IntPtr hwnd, int nCmdShow);
 
         [StructLayout(LayoutKind.Sequential)]
         public struct RECT

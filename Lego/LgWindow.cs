@@ -42,6 +42,16 @@ namespace Lego
             Size = rec.GetSize();
         }
 
+        internal void Show()
+        {
+            LgProcessManager.ShowWindow(Process);
+        }
+
+        internal void Minimize()
+        {
+            LgProcessManager.MinimizeWindow(Process);
+        }
+
         public override string ToString() => JsonConvert.SerializeObject(this, Formatting.Indented);
     }
 }

@@ -112,5 +112,17 @@ namespace Lego
             LgConfig c = configs.ElementAt<LgConfig>(listBox.SelectedIndex);
             c.UpdateAndSaveChanges();
         }
+
+        private void btnShow_Click(object sender, RoutedEventArgs e)
+        {
+            LgConfig c = configs.ElementAt<LgConfig>(listBox.SelectedIndex);
+            c.ShowWindows();
+        }
+
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            LgConfig c = configs.ElementAt<LgConfig>(listBox.SelectedIndex);
+            c.MinimizeWindows();
+        }
     }
 }

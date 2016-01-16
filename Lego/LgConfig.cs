@@ -22,7 +22,10 @@ namespace Lego
             Windows = new List<LgWindow>();
         }
 
-
+        /// <summary>
+        /// Start the processes in this configuration
+        /// </summary>
+        /// <returns></returns>
         internal Boolean StartProcesses()
         {
             Boolean allOk = true;
@@ -34,7 +37,10 @@ namespace Lego
             return allOk;
         }
 
-
+        /// <summary>
+        /// Move the window to the position specified in the config
+        /// </summary>
+        /// <returns></returns>
         internal Boolean RepositionWindows()
         {
             Boolean allOk = true;
@@ -46,6 +52,11 @@ namespace Lego
             return allOk;
         }
 
+        /// <summary>
+        /// Add new Window to the config from a coordinate in the screen. Usually from a mouse click.
+        /// </summary>
+        /// <param name="point">point in screen</param>
+        /// <returns></returns>
         internal Boolean AddWindow(LgPoint point)
         {
             Boolean result = true;
@@ -67,6 +78,27 @@ namespace Lego
             return result; 
         }
 
+        /// <summary>
+        /// Show windows if they are hidden
+        /// </summary>
+        internal void ShowWindows()
+        {
+            Windows.ForEach((m) => m.Show());
+        }
+
+        /// <summary>
+        /// Show windows if they are hidden
+        /// </summary>
+        internal void MinimizeWindows()
+        {
+            Windows.ForEach((m) => m.Minimize());
+        }
+
+        /// <summary>
+        /// Save config to file.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         internal Boolean WriteToFile(string path)
         {
             if (Filepath == null) {
@@ -82,6 +114,11 @@ namespace Lego
             return true;
         }
 
+        /// <summary>
+        /// Load config from file
+        /// </summary>
+        /// <param name="filepath"></param>
+        /// <returns></returns>
         public static LgConfig FromFile(string filepath)
         {
             LgConfig newConfig = JsonConvert.DeserializeObject<LgConfig>(File.ReadAllText(filepath));
@@ -90,6 +127,10 @@ namespace Lego
             return newConfig;
         }
 
+        /// <summary>
+        /// Delete config file from drive.
+        /// </summary>
+        /// <returns></returns>
         public Boolean DeleteFile()
         {
             if (File.Exists(Filepath)) {
@@ -112,6 +153,11 @@ namespace Lego
             WriteToFile(Filepath);
         }
 
+        /// <summary>
+        /// Generate a random string.
+        /// </summary>
+        /// <param name="length"></param>
+        /// <returns></returns>
         public static string GenerateString(int length = 10)
         {
             Random random = new Random();
@@ -123,6 +169,8 @@ namespace Lego
             }
             return result.ToString();
         }
+
+
         //public override string ToString() => JsonConvert.SerializeObject(this, Formatting.Indented);
         public override string ToString() => $"{Title} > {String.Join(",", Windows.Select( (w) => w.Process?.Name))}";
     }
