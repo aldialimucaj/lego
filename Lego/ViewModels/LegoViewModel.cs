@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Lego.Models;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -9,9 +11,17 @@ namespace Lego.ViewModels
 {
     public class LegoViewModel : INotifyPropertyChanged
     {
-        public LegoViewModel()
-        {
 
+        ObservableCollection<LgConfig> _Configs = new ObservableCollection<LgConfig>();
+        
+        public ObservableCollection<LgConfig> Configs
+        {
+            get { return _Configs; }
+            set
+            {
+                _Configs = value;
+                OnPropertyChanged("Configs");
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

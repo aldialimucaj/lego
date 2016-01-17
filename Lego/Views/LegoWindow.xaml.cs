@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Lego
+namespace Lego.Views
 {
     /// <summary>
     /// Interaction logic for LegoWindow.xaml

@@ -5,11 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:l="clr-namespace:Lego"
         xmlns:vm="clr-namespace:Lego.ViewModels"
+        xmlns:m="clr-namespace:Lego.Models"
         mc:Ignorable="d"
         Title="LegoWindow" Height="300" Width="400">
- 
-    
+    <Window.Resources>
+        <vm:LegoViewModel x:Key="legoViewModel" />
+    </Window.Resources>
+
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="60*"/>
+            <ColumnDefinition Width="60*"/>
+            <ColumnDefinition Width="60*"/>
+            <ColumnDefinition Width="60*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="200*"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="btnSart" Grid.Column="0" Grid.Row="0" Content="Start" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"/>
+        <ListBox x:Name="listBox" Grid.ColumnSpan="4" HorizontalAlignment="Left" Height="200" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="400"/>
+
+
     </Grid>
 </Window>
