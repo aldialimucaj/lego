@@ -17,12 +17,14 @@ namespace Lego.ViewModels
 
         private ObservableCollection<LgConfig> _Configs = new ObservableCollection<LgConfig>();
         private ICommand _StartCollectingCommand;
+        private ICommand _StopCollectingCommand;
         private Boolean _Collecting;
 
         public LegoViewModel()
         {
             Debug.Write("public LegoViewModel()");
             _StartCollectingCommand = new StartCollectingCommand();
+            _StopCollectingCommand = new StopCollectingCommand();
         }
         
         public ObservableCollection<LgConfig> Configs
@@ -45,7 +47,17 @@ namespace Lego.ViewModels
             }
         }
 
-        public Boolean Collecting
+        public ICommand StopCollectingCommand
+        {
+            get { return _StopCollectingCommand; }
+            set
+            {
+                _StopCollectingCommand = value;
+                OnPropertyChanged("StopCollectingCommand");
+            }
+        }
+
+        public Boolean IsCollecting
         {
             get { return _Collecting; }
             set

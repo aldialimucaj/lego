@@ -24,6 +24,7 @@
             <RowDefinition Height="200*"/>
         </Grid.RowDefinitions>
         <Button x:Name="btnSart" Grid.Column="0" Grid.Row="0" Content="Start" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"  CommandParameter="{StaticResource ResourceKey=legoViewModel}" Command="{Binding StartCollectingCommand}"/>
+        <Button x:Name="btnStop" Grid.Column="1" Grid.Row="0"  Content="Stop" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" CommandParameter="{StaticResource ResourceKey=legoViewModel}" Command="{Binding StopCollectingCommand}"/>
         <ListBox x:Name="listBox" Grid.ColumnSpan="4" HorizontalAlignment="Left" Height="200" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="400"/>
 
 

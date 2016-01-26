@@ -1,7 +1,6 @@
 ﻿using Lego.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,9 +8,8 @@ using System.Windows.Input;
 
 namespace Lego.Commands
 {
-    class StartCollectingCommand : ICommand
+    class StopCollectingCommand : ICommand
     {
-        
         public LegoViewModel LegoViewModel { get; set; }
 
         public event EventHandler CanExecuteChanged
@@ -31,14 +29,13 @@ namespace Lego.Commands
             if (parameter == null) return false;
 
             LegoViewModel = (LegoViewModel)parameter;
-            
-            return !LegoViewModel.IsCollecting;
+
+            return LegoViewModel.IsCollecting;
         }
 
         public void Execute(object parameter)
         {
-            Trace.WriteLine("executed");
-            LegoViewModel.IsCollecting = true;
+            LegoViewModel.IsCollecting = false;
         }
     }
 }
