@@ -1,18 +1,29 @@
-﻿using Lego.Models;
+﻿using Lego.Commands;
+using Lego.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Lego.ViewModels
 {
     public class LegoViewModel : INotifyPropertyChanged
     {
 
-        ObservableCollection<LgConfig> _Configs = new ObservableCollection<LgConfig>();
+        private ObservableCollection<LgConfig> _Configs = new ObservableCollection<LgConfig>();
+        private ICommand _StartCollectingCommand;
+        private Boolean _Collecting;
+
+        public LegoViewModel()
+        {
+            Debug.Write("public LegoViewModel()");
+            _StartCollectingCommand = new StartCollectingCommand();
+        }
         
         public ObservableCollection<LgConfig> Configs
         {
@@ -21,6 +32,26 @@ namespace Lego.ViewModels
             {
                 _Configs = value;
                 OnPropertyChanged("Configs");
+            }
+        }
+
+        public ICommand StartCollectingCommand
+        {
+            get { return _StartCollectingCommand; }
+            set
+            {
+                _StartCollectingCommand = value;
+                OnPropertyChanged("StartCollectingCommand");
+            }
+        }
+
+        public Boolean Collecting
+        {
+            get { return _Collecting; }
+            set
+            {
+                _Collecting = value;
+                OnPropertyChanged("_Collecting");
             }
         }
 
