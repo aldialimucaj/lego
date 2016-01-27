@@ -19,13 +19,21 @@ namespace Lego.Models
         public Boolean IsRunningAll {
             get
             {
-                return Windows.Select((w) => w.Process?.WinProcess?.HasExited ?? false).Aggregate((a, b) => a && b);
+                return Windows.Select((w) => w.Process?.WinProcess?.Responding ?? false).Aggregate((a, b) => a && b);
             }
         }
         public Boolean IsRunningAny {
             get
             {
-                return Windows.Select((w) => w.Process?.WinProcess?.HasExited ?? false).Aggregate((a, b) => a || b);
+                return Windows.Select((w) => w.Process?.WinProcess?.Responding ?? false).Aggregate((a, b) => a || b);
+            }
+        }
+
+        internal void StopProcesses()
+        {
+            foreach (LgWindow m in Windows)
+            {
+                LgProcessManager.Stop(m.Process);
             }
         }
 
