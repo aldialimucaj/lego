@@ -47,6 +47,22 @@ namespace Lego
             return process.WinProcess != null && process.WinProcess.Responding;
         }
 
+        public static Boolean Stop(LgProcess process)
+        {
+            Process p = process.WinProcess;
+
+            try
+            {
+                if (!p.HasExited) p.Kill();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+            return p.HasExited;
+        }
+
         /// <summary>
         /// Checks if the process name matches any running processes
         /// </summary>

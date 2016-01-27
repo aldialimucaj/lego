@@ -18,6 +18,7 @@ namespace Lego.ViewModels
         private ObservableCollection<LgConfig> _Configs = new ObservableCollection<LgConfig>();
         private ICommand _StartCollectingCommand;
         private ICommand _StopCollectingCommand;
+        private OpenCommand _OpenCommand;
         private Boolean _Collecting;
 
         public LegoViewModel()
@@ -25,6 +26,10 @@ namespace Lego.ViewModels
             Debug.Write("public LegoViewModel()");
             _StartCollectingCommand = new StartCollectingCommand();
             _StopCollectingCommand = new StopCollectingCommand();
+            _OpenCommand = new OpenCommand(this);
+
+            LgPersistor.Init();
+            LgPersistor.GetAllConfigs().ForEach((c) => _Configs.Add(c));
         }
         
         public ObservableCollection<LgConfig> Configs
@@ -54,6 +59,16 @@ namespace Lego.ViewModels
             {
                 _StopCollectingCommand = value;
                 OnPropertyChanged("StopCollectingCommand");
+            }
+        }
+
+        public ICommand OpenCommand
+        {
+            get { return _OpenCommand; }
+            set
+            {
+                _OpenCommand = value as OpenCommand;
+                OnPropertyChanged("OpenCommand");
             }
         }
 

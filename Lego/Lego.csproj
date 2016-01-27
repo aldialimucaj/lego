@@ -83,6 +83,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\OpenCommand.cs" />
     <Compile Include="Commands\StartCollectingCommand.cs" />
     <Compile Include="Commands\StopCollectingCommand.cs" />
     <Compile Include="IOManager.cs" />

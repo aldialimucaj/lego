@@ -15,6 +15,19 @@ namespace Lego.Models
         public List<LgWindow> Windows { get; set; }
         public String Shortcut { get; set; }
         public Boolean Stick { get; set; }
+        public Boolean WasStarted { get; private set; }
+        public Boolean IsRunningAll {
+            get
+            {
+                return Windows.Select((w) => w.Process?.WinProcess?.HasExited ?? false).Aggregate((a, b) => a && b);
+            }
+        }
+        public Boolean IsRunningAny {
+            get
+            {
+                return Windows.Select((w) => w.Process?.WinProcess?.HasExited ?? false).Aggregate((a, b) => a || b);
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -29,6 +42,7 @@ namespace Lego.Models
         /// <returns></returns>
         internal Boolean StartProcesses()
         {
+            WasStarted = true;
             Boolean allOk = true;
             foreach (LgWindow m in Windows)
             {
@@ -36,6 +50,14 @@ namespace Lego.Models
             }
 
             return allOk;
+        }
+
+        internal void CloseProcesses()
+        {
+            foreach (LgWindow m in Windows)
+            {
+                LgProcessManager.Stop(m.Process);
+            }
         }
 
         /// <summary>
