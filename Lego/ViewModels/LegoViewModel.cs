@@ -22,6 +22,7 @@ namespace Lego.ViewModels
         private CloseCommand _CloseCommand;
         private DeleteCommand _DeleteCommand;
         private Boolean _Collecting;
+        internal IOManager Manager { get; set; }
 
         public LegoViewModel()
         {

@@ -131,19 +131,13 @@ namespace Lego.Models
         /// </summary>
         /// <param name="directoryPath"></param>
         /// <returns></returns>
-        internal Boolean SaveToDirectory(string directoryPath)
+        internal Boolean Save()
         {
             if (Filepath == null) {
-                 Filepath = Path.Combine(directoryPath, LgPersistor.GenerateString(10) + ".json");
+                 Filepath = Path.Combine(LgPersistor.GetLegoConfigsPath(), LgPersistor.GenerateString(10) + ".json");
             }
-            // serialize JSON directly to a file
-            using (StreamWriter file = File.CreateText(Filepath))
-            {
-                JsonSerializer serializer = new JsonSerializer();
-                serializer.Formatting = Formatting.Indented;
-                serializer.Serialize(file, this);
-            }
-            return true;
+
+            return LgPersistor.SaveToDirectory(Filepath, this); ;
         }
 
         /// <summary>
@@ -182,7 +176,7 @@ namespace Lego.Models
             Windows.ForEach((m) => m.UpdatePosition());
             
             // save to disk
-            SaveToDirectory(Filepath);
+            Save();
         }
 
         public void OnPropertyChanged(string propertyName)

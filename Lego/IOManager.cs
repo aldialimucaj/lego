@@ -34,9 +34,11 @@ namespace Lego
             _hookID = SetHook(_proc);
         }
 
-        public void Stop()
+        public LgConfig Stop()
         {
             UnhookWindowsHookEx(_hookID);
+
+            return Config;
         }
 
         private IntPtr SetHook(LowLevelMouseProc proc)

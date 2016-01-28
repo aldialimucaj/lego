@@ -1,4 +1,5 @@
-﻿using Lego.ViewModels;
+﻿using Lego.Models;
+using Lego.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -39,6 +40,10 @@ namespace Lego.Commands
         {
             Trace.WriteLine("executed");
             LegoViewModel.IsCollecting = true;
+
+            LgConfig config = new LgConfig();
+            LegoViewModel.Manager = new IOManager(config);
+            LegoViewModel.Manager.Start();
         }
     }
 }

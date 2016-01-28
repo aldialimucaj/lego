@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -18,13 +19,29 @@ namespace Lego.Models
         public static Boolean Init()
         {
             Boolean result = false;
-            if(!Directory.Exists(FULL_PATH))
-            {
-                Directory.CreateDirectory(FULL_PATH);
-                Directory.CreateDirectory(CONFIGS_PATH);
-                result = true;
-            }
+            Directory.CreateDirectory(FULL_PATH);
+            Directory.CreateDirectory(CONFIGS_PATH);
+
             return result;
+        }
+
+        /// <summary>
+        /// Save config to file.
+        /// Filename is a random string.
+        /// </summary>
+        /// <param name="directoryPath"></param>
+        /// <returns></returns>
+        internal static Boolean SaveToDirectory(string Filepath, object Config)
+        {
+            Init();
+            // serialize JSON directly to a file
+            using (StreamWriter file = File.CreateText(Filepath))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                serializer.Formatting = Formatting.Indented;
+                serializer.Serialize(file, Config);
+            }
+            return true;
         }
 
         /// <summary>
@@ -34,7 +51,7 @@ namespace Lego.Models
         public static List<LgConfig> GetAllConfigs()
         {
             List<LgConfig> configs = new List<LgConfig>();
-            List<string> files = Directory.GetFiles(FULL_PATH).ToList<string>();
+            List<string> files = Directory.GetFiles(CONFIGS_PATH).ToList<string>();
             files.ForEach((f) => configs.Add(LgConfig.FromFile(f)));
 
             return configs;

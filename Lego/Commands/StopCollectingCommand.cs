@@ -1,4 +1,5 @@
-﻿using Lego.ViewModels;
+﻿using Lego.Models;
+using Lego.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,14 @@ namespace Lego.Commands
 
         public void Execute(object parameter)
         {
+            LgConfig c = LegoViewModel.Manager?.Stop();
+            if (c != null)
+            {
+                LegoViewModel.Configs.Add(c);
+                c.Save();
+            }
+            LegoViewModel.Manager = null;
+
             LegoViewModel.IsCollecting = false;
         }
     }
