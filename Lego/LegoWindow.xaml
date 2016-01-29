@@ -6,6 +6,7 @@
         xmlns:l="clr-namespace:Lego"
         xmlns:vm="clr-namespace:Lego.ViewModels"
         xmlns:m="clr-namespace:Lego.Models"
+        xmlns:o="clr-namespace:Lego.Other"
         mc:Ignorable="d"
         Title="LegoWindow" Height="300" Width="400">
     <Window.Resources>

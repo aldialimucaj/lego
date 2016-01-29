@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Lego.Other;
+using System.Windows;
 
 namespace Lego
 {
@@ -10,6 +11,8 @@ namespace Lego
         public LegoWindow()
         {
             InitializeComponent();
+            // no Icon Tray in XAML
+            Bootstrap bootstrap = new Bootstrap(this);
         }
     }
 }
