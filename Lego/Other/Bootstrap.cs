@@ -30,6 +30,9 @@ namespace Lego.Other
 
         public void Init()
         {
+#if !DEBUG
+            _Window.Hide();
+#endif
             InitTray();
             InitKeyboardHook();
             InitWindowKeyboardHook();

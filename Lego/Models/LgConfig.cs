@@ -147,8 +147,16 @@ namespace Lego.Models
         /// <returns></returns>
         public static LgConfig FromFile(string filepath)
         {
-            LgConfig newConfig = JsonConvert.DeserializeObject<LgConfig>(File.ReadAllText(filepath));
-            newConfig.Filepath = filepath;
+            LgConfig newConfig;
+            try
+            {
+                newConfig = JsonConvert.DeserializeObject<LgConfig>(File.ReadAllText(filepath));
+                newConfig.Filepath = filepath;
+            }catch(Exception e)
+            {
+                Trace.TraceError(e.ToString());
+                return null;
+            }
 
             return newConfig;
         }

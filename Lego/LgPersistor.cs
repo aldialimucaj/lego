@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -33,14 +34,22 @@ namespace Lego.Models
         /// <returns></returns>
         internal static Boolean SaveToDirectory(string Filepath, object Config)
         {
-            Init();
-            // serialize JSON directly to a file
-            using (StreamWriter file = File.CreateText(Filepath))
+            try
             {
+                Init();
+                // serialize JSON directly to a file
+                using (StreamWriter file = File.CreateText(Filepath))
+                {
                 JsonSerializer serializer = new JsonSerializer();
                 serializer.Formatting = Formatting.Indented;
                 serializer.Serialize(file, Config);
+                }
+            }catch(Exception e)
+            {
+                Trace.TraceError(e.ToString());
+                return false;
             }
+
             return true;
         }
 
@@ -52,7 +61,11 @@ namespace Lego.Models
         {
             List<LgConfig> configs = new List<LgConfig>();
             List<string> files = Directory.GetFiles(CONFIGS_PATH).ToList<string>();
-            files.ForEach((f) => configs.Add(LgConfig.FromFile(f)));
+            files.ForEach((f) => {
+                LgConfig c = LgConfig.FromFile(f);
+                if(c != null) configs.Add(c);
+                }
+            );
 
             return configs;
         }
