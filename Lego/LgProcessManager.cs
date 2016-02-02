@@ -50,6 +50,7 @@ namespace Lego
         public static Boolean Stop(LgProcess process)
         {
             Process p = process.WinProcess;
+            p.Refresh();
 
             try
             {
