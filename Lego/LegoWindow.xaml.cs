@@ -1,12 +1,13 @@
 ﻿using Lego.Other;
 using System.Windows;
+using MahApps.Metro.Controls;
 
 namespace Lego
 {
     /// <summary>
     /// Interaction logic for LegoWindow.xaml
     /// </summary>
-    public partial class LegoWindow : Window
+    public partial class LegoWindow : MetroWindow
     {
         public LegoWindow()
         {
