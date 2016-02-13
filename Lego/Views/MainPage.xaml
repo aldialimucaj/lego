@@ -27,6 +27,15 @@
             <RowDefinition Height="200*"/>
         </Grid.RowDefinitions>
         <ListBox x:Name="listBox" Grid.ColumnSpan="4" HorizontalAlignment="Left" Height="220" Margin="0,0,0,0" Grid.Row="2" VerticalAlignment="Top" Width="400" ItemsSource="{Binding Configs}">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsRunningAny}" Value="True">
+                            <Setter Property="Background" Value="Green"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.ItemContainerStyle>
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>

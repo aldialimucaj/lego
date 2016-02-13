@@ -32,7 +32,6 @@ namespace Lego.Commands
         public void Execute(object parameter)
         {
             Config.StopProcesses();
-            Config.RepositionWindows();
         }
         public event EventHandler CanExecuteChanged
         {
