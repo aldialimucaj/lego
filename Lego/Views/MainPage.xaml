@@ -14,7 +14,7 @@
         <vm:LegoViewModel x:Key="legoViewModel" />
     </Page.Resources>
 
-    <Grid DataContext="{StaticResource ResourceKey=legoViewModel}">
+    <Grid DataContext="{StaticResource ResourceKey=legoViewModel}" HorizontalAlignment="Center" Margin="2">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="65*"/>
             <ColumnDefinition Width="65*"/>
@@ -30,10 +30,11 @@
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding IsRunningAny}" Value="True">
-                            <Setter Property="Background" Value="Green"/>
+                        <DataTrigger Binding="{Binding IsRunningAny}">
+                            <Setter Property="Background" Value="Gray"/>
                         </DataTrigger>
                     </Style.Triggers>
+                    
                 </Style>
             </ListBox.ItemContainerStyle>
             <ListBox.ItemTemplate>
@@ -56,14 +57,11 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button x:Name="btnSart" Grid.Column="0" Grid.Row="0" Content="Start" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"  CommandParameter="{StaticResource ResourceKey=legoViewModel}" Command="{Binding StartCollectingCommand}"/>
-        <Button x:Name="btnStop" Grid.Column="0" Grid.Row="1"  Content="Stop" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" CommandParameter="{StaticResource ResourceKey=legoViewModel}" Command="{Binding StopCollectingCommand}"/>
-        <Button x:Name="btnOpen" Grid.Column="1" Grid.Row="0" Content="Open" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Command="{Binding OpenCommand, Source={StaticResource legoViewModel}}" CommandParameter="{Binding SelectedItem, ElementName=listBox}"/>
-        <Button x:Name="btnClose" Grid.Column="1" Grid.Row="1" Content="Close" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Command="{Binding CloseCommand, Source={StaticResource legoViewModel}}" CommandParameter="{Binding SelectedItem, ElementName=listBox}"/>
-        <Button x:Name="btnEdit" Grid.Column="2" Grid.Row="0" Content="Edit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="btnDelete" Grid.Column="2" Grid.Row="1" Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Command="{Binding DeleteCommand, Source={StaticResource legoViewModel}}" CommandParameter="{Binding SelectedItem, ElementName=listBox}"/>
-
-
+        <Button x:Name="btnSart" Grid.Column="1" Grid.Row="0" Content="Start" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"  CommandParameter="{StaticResource ResourceKey=legoViewModel}" Command="{Binding StartCollectingCommand}"/>
+        <Button x:Name="btnStop" Grid.Column="1" Grid.Row="1"  Content="Stop" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" CommandParameter="{StaticResource ResourceKey=legoViewModel}" Command="{Binding StopCollectingCommand}"/>
+        <Button x:Name="btnOpen" Grid.Column="2" Grid.Row="0" Content="Open" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Command="{Binding OpenCommand, Source={StaticResource legoViewModel}}" CommandParameter="{Binding SelectedItem, ElementName=listBox}"/>
+        <Button x:Name="btnClose" Grid.Column="2" Grid.Row="1" Content="Close" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Command="{Binding CloseCommand, Source={StaticResource legoViewModel}}" CommandParameter="{Binding SelectedItem, ElementName=listBox}"/>
+        
     </Grid>
 </Page>
 
