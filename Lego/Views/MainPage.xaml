@@ -1,0 +1,61 @@
+﻿<Page x:Class="Lego.Views.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Lego.Views"
+      xmlns:vm="clr-namespace:Lego.ViewModels"
+      xmlns:m="clr-namespace:Lego.Models"
+      xmlns:o="clr-namespace:Lego.Other"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="400"
+      Title="MainPage">
+    <Page.Resources>
+        <vm:LegoViewModel x:Key="legoViewModel" />
+    </Page.Resources>
+
+    <Grid DataContext="{StaticResource ResourceKey=legoViewModel}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="65*"/>
+            <ColumnDefinition Width="65*"/>
+            <ColumnDefinition Width="65*"/>
+            <ColumnDefinition Width="60*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="200*"/>
+        </Grid.RowDefinitions>
+        <ListBox x:Name="listBox" Grid.ColumnSpan="4" HorizontalAlignment="Left" Height="220" Margin="0,0,0,0" Grid.Row="2" VerticalAlignment="Top" Width="400" ItemsSource="{Binding Configs}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Horizontal" Margin="2">
+                            <Label Content="{Binding}" Margin="2"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="2" HorizontalAlignment="Right">
+                            <StackPanel Orientation="Horizontal" Margin="2" HorizontalAlignment="Right">
+                            <Button Content="Edit" Margin="2"/>
+                            <Button Content="Delete" Margin="2"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button x:Name="btnSart" Grid.Column="0" Grid.Row="0" Content="Start" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"  CommandParameter="{StaticResource ResourceKey=legoViewModel}" Command="{Binding StartCollectingCommand}"/>
+        <Button x:Name="btnStop" Grid.Column="0" Grid.Row="1"  Content="Stop" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" CommandParameter="{StaticResource ResourceKey=legoViewModel}" Command="{Binding StopCollectingCommand}"/>
+        <Button x:Name="btnOpen" Grid.Column="1" Grid.Row="0" Content="Open" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Command="{Binding OpenCommand, Source={StaticResource legoViewModel}}" CommandParameter="{Binding SelectedItem, ElementName=listBox}"/>
+        <Button x:Name="btnClose" Grid.Column="1" Grid.Row="1" Content="Close" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Command="{Binding CloseCommand, Source={StaticResource legoViewModel}}" CommandParameter="{Binding SelectedItem, ElementName=listBox}"/>
+        <Button x:Name="btnEdit" Grid.Column="2" Grid.Row="0" Content="Edit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btnDelete" Grid.Column="2" Grid.Row="1" Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Command="{Binding DeleteCommand, Source={StaticResource legoViewModel}}" CommandParameter="{Binding SelectedItem, ElementName=listBox}"/>
+
+
+    </Grid>
+</Page>
+
+    

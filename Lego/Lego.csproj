@@ -91,6 +91,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\EditCommand.cs" />
     <Compile Include="Commands\DeleteCommand.cs" />
     <Compile Include="Commands\CloseCommand.cs" />
     <Compile Include="Commands\OpenCommand.cs" />
@@ -110,8 +111,14 @@
     <Compile Include="Models\LgWindow.cs" />
     <Compile Include="LgProcessManager.cs" />
     <Compile Include="Models\LgSize.cs" />
+    <Compile Include="Views\ConfigEditPage.xaml.cs">
+      <DependentUpon>ConfigEditPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\HoverWindow.xaml.cs">
       <DependentUpon>HoverWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Page Include="LegoWindow.xaml">
       <SubType>Designer</SubType>
@@ -129,7 +136,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\ConfigEditPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\HoverWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
